@@ -2,8 +2,7 @@
 
 A curated, data-driven portal built with **Django** to organize and navigate technical research repositories. This project bridges the gap between industrial software engineering and academic research in **HCI**, **XAI**, and **AI Ethics**.
 ## 🔗 Live Demo
-Check out the live application here: [mirzatairin.pythonanywhere.com](https://mirzatairin.pythonanywhere.com/)
-
+[![Deployment Status](https://img.shields.io/badge/Status-Live-green?style=for-the-badge)](https://mirzatairin.pythonanywhere.com/)
 ---
 
 ## 🌟 Key Features
