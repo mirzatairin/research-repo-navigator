@@ -6,7 +6,7 @@ A curated, data-driven portal built with **Django** to organize and navigate tec
 - **Dynamic Catalog:** Browse research tools with clean, card-based UI.
 - **Search Logic:** Real-time filtering by tool name or description.
 - **Community Submission:** Integrated form for adding new research assets (Admin-protected).
-- **NASA-Inspired UI:** A professional, grounded aesthetic designed for focus and clarity.
+- **User friendly UI:** A professional, grounded aesthetic designed for focus and clarity.
 
 ## 🛠️ Technical Stack
 - **Framework:** Django 5.x
