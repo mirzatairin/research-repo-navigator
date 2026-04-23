@@ -1,0 +1,14 @@
+<header style="background: #0b3d91; color: white; padding: 2rem; text-align: center;">
+    <h1>Submit a New Research Tool</h1>
+</header>
+<div style="max-width: 600px; margin: 2rem auto; font-family: sans-serif;">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background: #fc3d21; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
+            Submit to Catalog
+        </button>
+    </form>
+    <br>
+    <a href="{% url 'tool_list' %}">Back to Catalog</a>
+</div>

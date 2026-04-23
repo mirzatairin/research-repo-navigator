@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NASA EMAC | Tool Portal</title>
+    <style>
+        :root {
+            --nasa-blue: #0b3d91;
+            --nasa-red: #fc3d21;
+            --dark-bg: #1a1a1a;
+            --card-bg: #ffffff;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f7f6; color: #333; }
+        
+        /* Header Styling */
+        header { background: var(--nasa-blue); color: white; padding: 2rem; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        header h1 { margin: 0; letter-spacing: 2px; text-transform: uppercase; }
+        
+        .container { max-width: 900px; margin: 2rem auto; padding: 0 20px; }
+        
+        /* Tool Card Styling */
+        .tool-card { 
+            background: var(--card-bg); 
+            border-radius: 8px; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--nasa-blue);
+            transition: transform 0.2s;
+        }
+        .tool-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .tool-name { color: var(--nasa-blue); margin: 0 0 10px 0; font-size: 1.5rem; }
+        .badge { background: #e0e0e0; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
+        .btn { 
+            display: inline-block; 
+            margin-top: 15px; 
+            padding: 8px 16px; 
+            background: var(--nasa-red); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 4px; 
+            font-size: 0.9rem;
+        }
+        .btn[style*="transparent"]:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: white;
+}
+    </style>
+</head>
+<body>
+    
+
+    <header>
+    <a href="{% url 'tool_list' %}" style="text-decoration: none; color: inherit;">
+        <h1>Research Repository Navigator</h1>
+    </a>
+    <p>Curated Tools for HCI, XAI, and Software Engineering for Rin <3</p>
+    
+    <div style="margin-top: 15px;">
+        <a href="{% url 'tool_list' %}" class="btn" style="background: transparent; border: 1px solid white; margin-right: 10px;">
+            Home
+        </a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'submit_tool' %}" class="btn" style="background-color: var(--nasa-red); border: 1px solid var(--nasa-red);">
+            + Submit New Tool
+        </a>
+        {% endif %}
+    </div>
+</header>
+
+    <div class="container">
+
+
+            <form method="GET" action="." style="margin-bottom: 30px; display: flex; gap: 10px;">
+        <input type="text" name="q" placeholder="Search by tool name or description..." 
+            style="flex-grow: 1; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+        <button type="submit" class="btn" style="margin-top: 0;">Search</button>
+          </form>
+
+
+        <h2>Available Scientific Tools</h2>
+        
+        {% for tool in tools %}
+            <div class="tool-card">
+                <h3 class="tool-name">{{ tool.name }}</h3>
+                <span class="badge">{{ tool.get_category_display }}</span>
+                <p><strong>Developer:</strong> {{ tool.developer }}</p>
+                <p>{{ tool.description }}</p>
+                <a href="{{ tool.repository_url }}" class="btn" target="_blank">Access Repository</a>
+            </div>
+        {% empty %}
+            <p>No tools found in the catalog.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
